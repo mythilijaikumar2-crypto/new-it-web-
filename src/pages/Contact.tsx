@@ -124,7 +124,7 @@ export const Contact: React.FC = () => {
                 viewport={{ once: true, margin: "-80px" }}
                 variants={cardVariants}
                 whileHover={shouldReduceMotion ? {} : { y: -4, scale: 1.01 }}
-                className="flex items-start space-x-4 bg-gradient-to-b from-bg_secondary/40 to-bg_secondary/10 backdrop-blur-md border border-border_custom/40 hover:border-secondary/50 p-6 rounded-2xl shadow-card_default hover:shadow-[0_8px_30px_rgba(6,182,212,0.1)] transition-all duration-300"
+                className="flex items-start space-x-4 bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 border border-border_custom/60 hover:border-secondary/50 p-6 rounded-2xl shadow-card_default hover:shadow-[0_8px_20px_rgba(6,182,212,0.1)] transition-[border-color,box-shadow] duration-300"
               >
                 <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center border border-secondary/20 shrink-0 mt-0.5">
                   <MapPin className="w-5 h-5 text-secondary" />
@@ -146,7 +146,7 @@ export const Contact: React.FC = () => {
                 viewport={{ once: true, margin: "-80px" }}
                 variants={cardVariants}
                 whileHover={shouldReduceMotion ? {} : { y: -4, scale: 1.01 }}
-                className="flex items-start space-x-4 bg-gradient-to-b from-bg_secondary/40 to-bg_secondary/10 backdrop-blur-md border border-border_custom/40 hover:border-secondary/50 p-6 rounded-2xl shadow-card_default hover:shadow-[0_8px_30px_rgba(6,182,212,0.1)] transition-all duration-300"
+                className="flex items-start space-x-4 bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 border border-border_custom/60 hover:border-secondary/50 p-6 rounded-2xl shadow-card_default hover:shadow-[0_8px_20px_rgba(6,182,212,0.1)] transition-[border-color,box-shadow] duration-300"
               >
                 <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center border border-secondary/20 shrink-0 mt-0.5">
                   <Mail className="w-5 h-5 text-secondary" />
@@ -168,7 +168,7 @@ export const Contact: React.FC = () => {
                 viewport={{ once: true, margin: "-80px" }}
                 variants={cardVariants}
                 whileHover={shouldReduceMotion ? {} : { y: -4, scale: 1.01 }}
-                className="flex items-start space-x-4 bg-gradient-to-b from-bg_secondary/40 to-bg_secondary/10 backdrop-blur-md border border-border_custom/40 hover:border-secondary/50 p-6 rounded-2xl shadow-card_default hover:shadow-[0_8px_30px_rgba(6,182,212,0.1)] transition-all duration-300"
+                className="flex items-start space-x-4 bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 border border-border_custom/60 hover:border-secondary/50 p-6 rounded-2xl shadow-card_default hover:shadow-[0_8px_20px_rgba(6,182,212,0.1)] transition-[border-color,box-shadow] duration-300"
               >
                 <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center border border-secondary/20 shrink-0 mt-0.5">
                   <Phone className="w-5 h-5 text-secondary" />
@@ -190,7 +190,7 @@ export const Contact: React.FC = () => {
                 viewport={{ once: true, margin: "-80px" }}
                 variants={cardVariants}
                 whileHover={shouldReduceMotion ? {} : { y: -4, scale: 1.01 }}
-                className="flex items-start space-x-4 bg-gradient-to-b from-bg_secondary/40 to-bg_secondary/10 backdrop-blur-md border border-border_custom/40 hover:border-secondary/50 p-6 rounded-2xl shadow-card_default hover:shadow-[0_8px_30px_rgba(6,182,212,0.1)] transition-all duration-300"
+                className="flex items-start space-x-4 bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 border border-border_custom/60 hover:border-secondary/50 p-6 rounded-2xl shadow-card_default hover:shadow-[0_8px_20px_rgba(6,182,212,0.1)] transition-[border-color,box-shadow] duration-300"
               >
                 <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center border border-secondary/20 shrink-0 mt-0.5">
                   <Clock className="w-5 h-5 text-secondary" />
@@ -224,7 +224,7 @@ export const Contact: React.FC = () => {
 
           {/* Form column */}
           <div className="lg:col-span-7">
-            <div className="relative group bg-gradient-to-b from-bg_secondary/70 to-bg_secondary/40 backdrop-blur-md border border-border_custom/60 rounded-3xl p-8 md:p-10 shadow-card_default hover:shadow-[0_15px_40px_rgba(6,182,212,0.15)] transition-[border-color,box-shadow] duration-500">
+            <div className="relative group bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 border border-border_custom/60 rounded-3xl p-8 md:p-10 shadow-card_default hover:shadow-[0_15px_40px_rgba(5,8,22,0.5)] transition-[border-color,box-shadow] duration-500">
               {/* Cyberpunk high-tech layout corner frames */}
               <div className="absolute top-0 left-0 w-8 h-[2px] bg-secondary opacity-40" />
               <div className="absolute top-0 left-0 w-[2px] h-8 bg-secondary opacity-40" />
@@ -251,7 +251,7 @@ export const Contact: React.FC = () => {
                         <input
                           {...register('name')}
                           placeholder="John Doe"
-                          className={`w-full py-3 px-4 text-text_primary bg-surface/30 border ${errors.name ? 'border-red-500 focus:ring-red-200' : 'border-border_custom/60 focus:border-secondary focus:ring-secondary/15'} rounded-lg text-sm md:text-base outline-none transition-all focus:ring-4`}
+                          className={`w-full py-3 px-4 text-text_primary bg-surface/30 border ${errors.name ? 'border-red-500 focus:ring-red-200' : 'border-border_custom/60 focus:border-secondary focus:ring-secondary/15'} rounded-lg text-sm md:text-base outline-none transition-[border-color,box-shadow] focus:ring-4`}
                         />
                         {errors.name && <p className="mt-1 text-xs text-red-500 font-medium">{errors.name.message}</p>}
                       </div>
@@ -262,7 +262,7 @@ export const Contact: React.FC = () => {
                           {...register('email')}
                           placeholder="john@example.com"
                           type="email"
-                          className={`w-full py-3 px-4 text-text_primary bg-surface/30 border ${errors.email ? 'border-red-500 focus:ring-red-200' : 'border-border_custom/60 focus:border-secondary focus:ring-secondary/15'} rounded-lg text-sm md:text-base outline-none transition-all focus:ring-4`}
+                          className={`w-full py-3 px-4 text-text_primary bg-surface/30 border ${errors.email ? 'border-red-500 focus:ring-red-200' : 'border-border_custom/60 focus:border-secondary focus:ring-secondary/15'} rounded-lg text-sm md:text-base outline-none transition-[border-color,box-shadow] focus:ring-4`}
                         />
                         {errors.email && <p className="mt-1 text-xs text-red-500 font-medium">{errors.email.message}</p>}
                       </div>
@@ -273,7 +273,7 @@ export const Contact: React.FC = () => {
                       <input
                         {...register('subject')}
                         placeholder="Project scoping, hiring team, etc."
-                        className={`w-full py-3 px-4 text-text_primary bg-surface/30 border ${errors.subject ? 'border-red-500 focus:ring-red-200' : 'border-border_custom/60 focus:border-secondary focus:ring-secondary/15'} rounded-lg text-sm md:text-base outline-none transition-all focus:ring-4`}
+                        className={`w-full py-3 px-4 text-text_primary bg-surface/30 border ${errors.subject ? 'border-red-500 focus:ring-red-200' : 'border-border_custom/60 focus:border-secondary focus:ring-secondary/15'} rounded-lg text-sm md:text-base outline-none transition-[border-color,box-shadow] focus:ring-4`}
                       />
                       {errors.subject && <p className="mt-1 text-xs text-red-500 font-medium">{errors.subject.message}</p>}
                     </div>
@@ -283,7 +283,7 @@ export const Contact: React.FC = () => {
                       <textarea
                         {...register('message')}
                         placeholder="Please outline your technical needs, timeline, or current scale challenges..."
-                        className={`w-full py-3 px-4 text-text_primary bg-surface/30 border ${errors.message ? 'border-red-500 focus:ring-red-200' : 'border-border_custom/60 focus:border-secondary focus:ring-secondary/15'} rounded-lg text-sm md:text-base outline-none transition-all focus:ring-4 resize-none h-32`}
+                        className={`w-full py-3 px-4 text-text_primary bg-surface/30 border ${errors.message ? 'border-red-500 focus:ring-red-200' : 'border-border_custom/60 focus:border-secondary focus:ring-secondary/15'} rounded-lg text-sm md:text-base outline-none transition-[border-color,box-shadow] focus:ring-4 resize-none h-32`}
                       />
                       {errors.message && <p className="mt-1 text-xs text-red-500 font-medium">{errors.message.message}</p>}
                     </div>
@@ -292,7 +292,7 @@ export const Contact: React.FC = () => {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full py-4 px-6 rounded-lg bg-linear-to-r from-secondary to-primary text-text_primary font-heading font-bold text-sm md:text-base hover:from-secondary/90 hover:to-primary/90 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] disabled:opacity-50 transition-all duration-300 flex items-center justify-center space-x-2 cursor-pointer"
+                        className="w-full py-4 px-6 rounded-lg bg-linear-to-r from-secondary to-primary text-text_primary font-heading font-bold text-sm md:text-base hover:from-secondary/90 hover:to-primary/90 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] disabled:opacity-50 transition-[background-color,box-shadow] duration-300 flex items-center justify-center space-x-2 cursor-pointer"
                       >
                         {isSubmitting ? (
                           <span>Sending inquiry...</span>
