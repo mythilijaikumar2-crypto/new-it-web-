@@ -79,10 +79,8 @@ export const Navbar: React.FC = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-        isScrolled 
-          ? 'py-3.5 bg-bg_primary/75 backdrop-blur-lg shadow-card_default border-b border-border_custom/40' 
-          : 'py-5 bg-transparent'
-      }`}
+        isScrolled ? 'py-3' : 'py-5'
+      } bg-transparent`}
     >
       <div className="max-w-[1280px] mx-auto px-4 md:px-8 flex items-center justify-between">
         {/* Logo */}
@@ -93,9 +91,9 @@ export const Navbar: React.FC = () => {
             className="h-12 md:h-16 w-auto object-contain" 
           />
         </NavLink>
-
-        {/* Desktop Navbar (>= 768px) */}
-        <nav className="hidden md:flex items-center space-x-1 relative">
+ 
+        {/* Desktop Navbar (>= 768px) - Separate Floating Glass Pill */}
+        <nav className="hidden md:flex items-center space-x-1 relative bg-bg_secondary/65 backdrop-blur-md border border-border_custom/40 px-2 py-1.5 rounded-full shadow-card_default">
           {LINKS.map((link, idx) => {
             const isActive = location.pathname === link.path;
             return (
@@ -104,7 +102,7 @@ export const Navbar: React.FC = () => {
                 to={link.path}
                 onMouseEnter={() => setHoveredIndex(idx)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                className={`relative px-4 py-2 font-heading font-medium text-sm transition-colors duration-200 min-h-[44px] min-w-[44px] inline-flex items-center justify-center cursor-pointer ${
+                className={`relative px-4.5 py-2 font-heading font-semibold text-xs tracking-wide transition-colors duration-200 rounded-full inline-flex items-center justify-center cursor-pointer min-h-[38px] ${
                   isActive ? 'text-text_primary' : 'text-text_secondary hover:text-text_primary'
                 }`}
               >
@@ -113,7 +111,7 @@ export const Navbar: React.FC = () => {
                   {((hoveredIndex === idx) || (isActive && hoveredIndex === null)) && !shouldReduceMotion && (
                     <motion.div
                       layoutId="nav-indicator"
-                      className="absolute inset-0 bg-surface/70 rounded-md -z-10"
+                      className="absolute inset-0 bg-surface/85 rounded-full -z-10"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
@@ -126,24 +124,25 @@ export const Navbar: React.FC = () => {
                 
                 {/* Fallback active indicator line (reduced motion or fallback) */}
                 {isActive && (shouldReduceMotion || hoveredIndex !== null) && (
-                  <span className="absolute bottom-1 left-4 right-4 h-0.5 bg-primary" />
+                  <span className="absolute bottom-1 left-4.5 right-4.5 h-0.5 bg-primary rounded-full" />
                 )}
               </NavLink>
             );
           })}
-          
-          <div className="pl-4">
-            <NavLink to="/contact" className="inline-block">
-              <motion.span
-                whileHover={{ scale: shouldReduceMotion ? 1 : 1.05 }}
-                whileTap={{ scale: shouldReduceMotion ? 1 : 0.95 }}
-                className="bg-primary text-text_primary font-heading font-semibold text-sm px-5 py-2.5 rounded-md shadow-sm hover:bg-primary_hover block cursor-pointer"
-              >
-                Start a Project
-              </motion.span>
-            </NavLink>
-          </div>
         </nav>
+
+        {/* CTA Button on the Right (Separate from the Menu Pill) */}
+        <div className="hidden md:block">
+          <NavLink to="/contact" className="inline-block">
+            <motion.span
+              whileHover={{ scale: shouldReduceMotion ? 1 : 1.05 }}
+              whileTap={{ scale: shouldReduceMotion ? 1 : 0.95 }}
+              className="bg-primary text-text_primary font-heading font-semibold text-sm px-6 py-2.5 rounded-full shadow-md hover:bg-primary_hover block cursor-pointer"
+            >
+              Start a Project
+            </motion.span>
+          </NavLink>
+        </div>
 
         {/* Mobile Hamburger Trigger (< 768px) */}
         <button
