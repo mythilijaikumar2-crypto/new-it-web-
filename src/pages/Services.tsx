@@ -1,6 +1,5 @@
 import React from 'react';
 import { Code, Laptop, Smartphone, Cloud, Layout, Cpu, RefreshCw, Calendar, Users2, ArrowRight } from 'lucide-react';
-import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Magnetic } from '../components/ui/Magnetic';
 import { FadeInSection, FadeInItem } from '../components/ui/FadeInSection';
@@ -94,7 +93,7 @@ export const Services: React.FC = () => {
   };
 
   return (
-    <div className="w-full pt-28 pb-16 bg-bg_primary">
+    <div className="w-full pt-28 pb-16 bg-transparent relative z-10">
       <div className="max-w-[1280px] mx-auto px-4 md:px-8 space-y-24">
         
         {/* Header Hero */}
@@ -183,36 +182,36 @@ export const Services: React.FC = () => {
           <FadeInSection stagger={true} className="grid grid-cols-1 lg:grid-cols-3 gap-8 text-left">
             {ENGAGEMENT_MODELS.map((model, idx) => (
               <FadeInItem key={idx}>
-                <Card className="h-full flex flex-col justify-between bg-card_bg border-border_custom">
+                <div className="h-full flex flex-col justify-between bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 border border-border_custom/60 rounded-lg p-6 md:p-8 shadow-card_default hover:shadow-[0_10px_30px_rgba(5,8,22,0.5)] transition-[border-color,box-shadow] duration-300">
                   <div className="space-y-6">
-                    <div className="w-12 h-12 rounded-md bg-primary/10 flex items-center justify-center">
+                    <div className="w-12 h-12 rounded-md bg-primary/10 flex items-center justify-center border border-primary/20">
                       {model.icon}
                     </div>
                     <div className="space-y-2">
-                      <h3 className="font-heading font-extrabold text-lg text-text_primary">
+                      <h3 className="font-heading font-extrabold text-xl text-text_primary">
                         {model.title}
                       </h3>
-                      <p className="text-sm text-text_muted leading-relaxed">
+                      <p className="text-sm text-text_secondary leading-relaxed font-medium">
                         {model.desc}
                       </p>
                     </div>
                   </div>
-                  <div className="pt-6 mt-6 border-t border-divider bg-surface/30 p-4 rounded-md">
-                    <p className="text-xs font-semibold text-text_muted uppercase tracking-wider mb-1">
+                  <div className="pt-5 mt-6 border-t border-divider bg-surface/60 p-4 rounded-md">
+                    <p className="text-xs font-extrabold text-secondary uppercase tracking-wider mb-1.5">
                       Best For
                     </p>
-                    <p className="text-xs text-text_secondary leading-relaxed font-medium">
+                    <p className="text-xs text-text_primary leading-relaxed font-semibold">
                       {model.bestFor}
                     </p>
                   </div>
-                </Card>
+                </div>
               </FadeInItem>
             ))}
           </FadeInSection>
         </section>
 
         {/* Closing CTA */}
-        <section className="bg-bg_secondary border border-border_custom p-8 md:p-12 rounded-lg text-center space-y-6">
+        <section className="relative z-10 bg-bg_secondary/95 border border-border_custom/60 p-8 md:p-12 rounded-lg text-center space-y-6 shadow-card_default">
           <FadeInSection className="max-w-xl mx-auto space-y-4">
             <h2 className="font-heading font-extrabold text-2xl md:text-3xl text-text_primary">
               Need a customized engineering squad?
