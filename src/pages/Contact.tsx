@@ -3,9 +3,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
-import { Mail, Phone, MapPin, Clock, ChevronDown, CheckCircle2 } from 'lucide-react';
+import { Mail, Phone, MapPin, Clock, ChevronDown, CheckCircle2, Send, Sparkles, ArrowRight } from 'lucide-react';
 import { Button } from '../components/ui/Button';
-import { Input, TextArea } from '../components/ui/Input';
 import { FadeInSection } from '../components/ui/FadeInSection';
 
 // Form schema with validation rules
@@ -88,16 +87,26 @@ export const Contact: React.FC = () => {
 
   return (
     <div className="w-full pt-28 pb-16 bg-transparent relative z-10">
-      <div className="max-w-[1280px] mx-auto px-4 md:px-8 space-y-24">
+      {/* Decorative blurred background ambient glow blobs */}
+      <div className="absolute top-20 left-10 w-80 h-80 rounded-full bg-secondary/5 blur-3xl pointer-events-none z-0" />
+      <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full bg-primary/5 blur-3xl pointer-events-none z-0" />
+
+      <div className="max-w-[1280px] mx-auto px-4 md:px-8 space-y-24 relative z-10">
         
         {/* Main contact layout */}
-        <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 text-left">
+        <section className="grid grid-cols-1 lg:grid-cols-12 gap-12 text-left items-start">
           {/* Info Details column */}
           <div className="lg:col-span-5 space-y-8">
             <div className="space-y-4">
-              <span className="text-xs font-heading font-extrabold uppercase tracking-widest text-secondary">
-                GET IN TOUCH
-              </span>
+              <div className="flex items-center space-x-2">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                </span>
+                <span className="text-xs font-semibold text-green-400 uppercase tracking-widest">
+                  Online & Active response (~2 Hrs)
+                </span>
+              </div>
               <h1 className="font-heading font-extrabold text-4xl md:text-5xl text-text_primary leading-tight">
                 Let's construct something together
               </h1>
@@ -115,11 +124,13 @@ export const Contact: React.FC = () => {
                 viewport={{ once: true, margin: "-80px" }}
                 variants={cardVariants}
                 whileHover={shouldReduceMotion ? {} : { y: -4, scale: 1.01 }}
-                className="flex items-start space-x-4 bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 border border-border_custom/60 hover:border-secondary/50 p-6 rounded-lg shadow-card_default hover:shadow-[0_8px_20px_rgba(5,8,22,0.4)] transition-[border-color,box-shadow] duration-300"
+                className="flex items-start space-x-4 bg-gradient-to-b from-bg_secondary/40 to-bg_secondary/10 backdrop-blur-md border border-border_custom/40 hover:border-secondary/50 p-6 rounded-2xl shadow-card_default hover:shadow-[0_8px_30px_rgba(6,182,212,0.1)] transition-all duration-300"
               >
-                <MapPin className="w-6 h-6 text-secondary shrink-0 mt-0.5" />
+                <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center border border-secondary/20 shrink-0 mt-0.5">
+                  <MapPin className="w-5 h-5 text-secondary" />
+                </div>
                 <div>
-                  <h3 className="font-heading font-bold text-sm text-text_primary uppercase tracking-wider mb-1">
+                  <h3 className="font-heading font-extrabold text-xs text-text_primary uppercase tracking-wider mb-1">
                     HQ Location
                   </h3>
                   <p className="text-xs md:text-sm text-text_secondary font-medium leading-relaxed">
@@ -135,11 +146,13 @@ export const Contact: React.FC = () => {
                 viewport={{ once: true, margin: "-80px" }}
                 variants={cardVariants}
                 whileHover={shouldReduceMotion ? {} : { y: -4, scale: 1.01 }}
-                className="flex items-start space-x-4 bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 border border-border_custom/60 hover:border-secondary/50 p-6 rounded-lg shadow-card_default hover:shadow-[0_8px_20px_rgba(5,8,22,0.4)] transition-[border-color,box-shadow] duration-300"
+                className="flex items-start space-x-4 bg-gradient-to-b from-bg_secondary/40 to-bg_secondary/10 backdrop-blur-md border border-border_custom/40 hover:border-secondary/50 p-6 rounded-2xl shadow-card_default hover:shadow-[0_8px_30px_rgba(6,182,212,0.1)] transition-all duration-300"
               >
-                <Mail className="w-6 h-6 text-secondary shrink-0 mt-0.5" />
+                <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center border border-secondary/20 shrink-0 mt-0.5">
+                  <Mail className="w-5 h-5 text-secondary" />
+                </div>
                 <div>
-                  <h3 className="font-heading font-bold text-sm text-text_primary uppercase tracking-wider mb-1">
+                  <h3 className="font-heading font-extrabold text-xs text-text_primary uppercase tracking-wider mb-1">
                     Email Inquiry
                   </h3>
                   <a href="mailto:hello@ascopetech.com" className="text-xs md:text-sm text-text_secondary font-semibold hover:text-secondary transition-colors">
@@ -155,11 +168,13 @@ export const Contact: React.FC = () => {
                 viewport={{ once: true, margin: "-80px" }}
                 variants={cardVariants}
                 whileHover={shouldReduceMotion ? {} : { y: -4, scale: 1.01 }}
-                className="flex items-start space-x-4 bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 border border-border_custom/60 hover:border-secondary/50 p-6 rounded-lg shadow-card_default hover:shadow-[0_8px_20px_rgba(5,8,22,0.4)] transition-[border-color,box-shadow] duration-300"
+                className="flex items-start space-x-4 bg-gradient-to-b from-bg_secondary/40 to-bg_secondary/10 backdrop-blur-md border border-border_custom/40 hover:border-secondary/50 p-6 rounded-2xl shadow-card_default hover:shadow-[0_8px_30px_rgba(6,182,212,0.1)] transition-all duration-300"
               >
-                <Phone className="w-6 h-6 text-secondary shrink-0 mt-0.5" />
+                <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center border border-secondary/20 shrink-0 mt-0.5">
+                  <Phone className="w-5 h-5 text-secondary" />
+                </div>
                 <div>
-                  <h3 className="font-heading font-bold text-sm text-text_primary uppercase tracking-wider mb-1">
+                  <h3 className="font-heading font-extrabold text-xs text-text_primary uppercase tracking-wider mb-1">
                     Call Us
                   </h3>
                   <a href="tel:+18005550199" className="text-xs md:text-sm text-text_secondary font-semibold hover:text-secondary transition-colors">
@@ -175,11 +190,13 @@ export const Contact: React.FC = () => {
                 viewport={{ once: true, margin: "-80px" }}
                 variants={cardVariants}
                 whileHover={shouldReduceMotion ? {} : { y: -4, scale: 1.01 }}
-                className="flex items-start space-x-4 bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 border border-border_custom/60 hover:border-secondary/50 p-6 rounded-lg shadow-card_default hover:shadow-[0_8px_20px_rgba(5,8,22,0.4)] transition-[border-color,box-shadow] duration-300"
+                className="flex items-start space-x-4 bg-gradient-to-b from-bg_secondary/40 to-bg_secondary/10 backdrop-blur-md border border-border_custom/40 hover:border-secondary/50 p-6 rounded-2xl shadow-card_default hover:shadow-[0_8px_30px_rgba(6,182,212,0.1)] transition-all duration-300"
               >
-                <Clock className="w-6 h-6 text-secondary shrink-0 mt-0.5" />
+                <div className="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center border border-secondary/20 shrink-0 mt-0.5">
+                  <Clock className="w-5 h-5 text-secondary" />
+                </div>
                 <div>
-                  <h3 className="font-heading font-bold text-sm text-text_primary uppercase tracking-wider mb-1">
+                  <h3 className="font-heading font-extrabold text-xs text-text_primary uppercase tracking-wider mb-1">
                     Work Hours
                   </h3>
                   <p className="text-xs md:text-sm text-text_secondary font-medium leading-relaxed">
@@ -188,11 +205,36 @@ export const Contact: React.FC = () => {
                 </div>
               </motion.div>
             </div>
+
+            {/* Direct Channel Tech Scoping Booking Card */}
+            <div className="bg-gradient-to-r from-secondary/15 to-primary/5 border border-secondary/20 p-6 rounded-2xl space-y-3 shadow-inner text-left">
+              <div className="flex items-center space-x-3">
+                <Sparkles className="w-5 h-5 text-secondary animate-pulse" />
+                <h4 className="font-heading font-extrabold text-sm text-text_primary uppercase tracking-wider">Schedule Tech Demo</h4>
+              </div>
+              <p className="text-xs text-text_secondary leading-relaxed font-medium">
+                Prefer a direct technical walkthrough? Book a 30-min architecture scoping call with our Lead Architect.
+              </p>
+              <a href="mailto:hello@ascopetech.com?subject=Technical Scoping Call Request" className="inline-flex items-center text-xs font-bold text-secondary hover:underline">
+                <span>Book a session</span>
+                <ArrowRight className="w-3.5 h-3.5 ml-1" />
+              </a>
+            </div>
           </div>
 
           {/* Form column */}
           <div className="lg:col-span-7">
-            <div className="relative group h-full flex flex-col justify-between overflow-hidden bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 border border-border_custom/60 rounded-lg p-6 md:p-8 shadow-card_default hover:shadow-[0_10px_30px_rgba(5,8,22,0.5)] transition-[border-color,box-shadow] duration-300">
+            <div className="relative group bg-gradient-to-b from-bg_secondary/70 to-bg_secondary/40 backdrop-blur-md border border-border_custom/60 rounded-3xl p-8 md:p-10 shadow-card_default hover:shadow-[0_15px_40px_rgba(6,182,212,0.15)] transition-[border-color,box-shadow] duration-500">
+              {/* Cyberpunk high-tech layout corner frames */}
+              <div className="absolute top-0 left-0 w-8 h-[2px] bg-secondary opacity-40" />
+              <div className="absolute top-0 left-0 w-[2px] h-8 bg-secondary opacity-40" />
+              <div className="absolute top-0 right-0 w-8 h-[2px] bg-secondary opacity-40" />
+              <div className="absolute top-0 right-0 w-[2px] h-8 bg-secondary opacity-40" />
+              <div className="absolute bottom-0 left-0 w-8 h-[2px] bg-secondary opacity-40" />
+              <div className="absolute bottom-0 left-0 w-[2px] h-8 bg-secondary opacity-40" />
+              <div className="absolute bottom-0 right-0 w-8 h-[2px] bg-secondary opacity-40" />
+              <div className="absolute bottom-0 right-0 w-[2px] h-8 bg-secondary opacity-40" />
+
               <AnimatePresence mode="wait">
                 {!isSuccess ? (
                   <motion.form
@@ -204,41 +246,63 @@ export const Contact: React.FC = () => {
                     className="space-y-6"
                   >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <Input
-                        label="Your Name"
-                        placeholder="John Doe"
-                        error={errors.name?.message}
-                        {...register('name')}
-                      />
-                      <Input
-                        label="Email Address"
-                        placeholder="john@example.com"
-                        type="email"
-                        error={errors.email?.message}
-                        {...register('email')}
-                      />
+                      <div className="w-full text-left space-y-1">
+                        <label className="block text-xs font-semibold uppercase tracking-wider text-text_secondary mb-1">Your Name</label>
+                        <input
+                          {...register('name')}
+                          placeholder="John Doe"
+                          className={`w-full py-3 px-4 text-text_primary bg-surface/30 border ${errors.name ? 'border-red-500 focus:ring-red-200' : 'border-border_custom/60 focus:border-secondary focus:ring-secondary/15'} rounded-lg text-sm md:text-base outline-none transition-all focus:ring-4`}
+                        />
+                        {errors.name && <p className="mt-1 text-xs text-red-500 font-medium">{errors.name.message}</p>}
+                      </div>
+
+                      <div className="w-full text-left space-y-1">
+                        <label className="block text-xs font-semibold uppercase tracking-wider text-text_secondary mb-1">Email Address</label>
+                        <input
+                          {...register('email')}
+                          placeholder="john@example.com"
+                          type="email"
+                          className={`w-full py-3 px-4 text-text_primary bg-surface/30 border ${errors.email ? 'border-red-500 focus:ring-red-200' : 'border-border_custom/60 focus:border-secondary focus:ring-secondary/15'} rounded-lg text-sm md:text-base outline-none transition-all focus:ring-4`}
+                        />
+                        {errors.email && <p className="mt-1 text-xs text-red-500 font-medium">{errors.email.message}</p>}
+                      </div>
                     </div>
-                    <Input
-                      label="Subject"
-                      placeholder="Project scoping, hiring team, etc."
-                      error={errors.subject?.message}
-                      {...register('subject')}
-                    />
-                    <TextArea
-                      label="Message Details"
-                      placeholder="Please outline your technical needs, timeline, or current scale challenges..."
-                      error={errors.message?.message}
-                      {...register('message')}
-                    />
+
+                    <div className="w-full text-left space-y-1">
+                      <label className="block text-xs font-semibold uppercase tracking-wider text-text_secondary mb-1">Subject</label>
+                      <input
+                        {...register('subject')}
+                        placeholder="Project scoping, hiring team, etc."
+                        className={`w-full py-3 px-4 text-text_primary bg-surface/30 border ${errors.subject ? 'border-red-500 focus:ring-red-200' : 'border-border_custom/60 focus:border-secondary focus:ring-secondary/15'} rounded-lg text-sm md:text-base outline-none transition-all focus:ring-4`}
+                      />
+                      {errors.subject && <p className="mt-1 text-xs text-red-500 font-medium">{errors.subject.message}</p>}
+                    </div>
+
+                    <div className="w-full text-left space-y-1">
+                      <label className="block text-xs font-semibold uppercase tracking-wider text-text_secondary mb-1">Message Details</label>
+                      <textarea
+                        {...register('message')}
+                        placeholder="Please outline your technical needs, timeline, or current scale challenges..."
+                        className={`w-full py-3 px-4 text-text_primary bg-surface/30 border ${errors.message ? 'border-red-500 focus:ring-red-200' : 'border-border_custom/60 focus:border-secondary focus:ring-secondary/15'} rounded-lg text-sm md:text-base outline-none transition-all focus:ring-4 resize-none h-32`}
+                      />
+                      {errors.message && <p className="mt-1 text-xs text-red-500 font-medium">{errors.message.message}</p>}
+                    </div>
+
                     <div>
-                      <Button
+                      <button
                         type="submit"
-                        variant="primary"
                         disabled={isSubmitting}
-                        className="w-full text-center py-4 flex items-center justify-center space-x-2"
+                        className="w-full py-4 px-6 rounded-lg bg-linear-to-r from-secondary to-primary text-text_primary font-heading font-bold text-sm md:text-base hover:from-secondary/90 hover:to-primary/90 hover:shadow-[0_0_20px_rgba(6,182,212,0.4)] disabled:opacity-50 transition-all duration-300 flex items-center justify-center space-x-2 cursor-pointer"
                       >
-                        <span>{isSubmitting ? 'Sending inquiry...' : 'Send Message'}</span>
-                      </Button>
+                        {isSubmitting ? (
+                          <span>Sending inquiry...</span>
+                        ) : (
+                          <>
+                            <span>Send Message</span>
+                            <Send className="w-4 h-4" />
+                          </>
+                        )}
+                      </button>
                     </div>
                   </motion.form>
                 ) : (
