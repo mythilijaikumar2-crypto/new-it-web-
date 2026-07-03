@@ -1,6 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import logoImage from '../assets/Ascope Tech logo transparent.png';
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -12,9 +13,11 @@ export const Footer: React.FC = () => {
           {/* Brand Info */}
           <div className="space-y-4 text-left">
             <NavLink to="/" className="flex items-center space-x-2">
-              <span className="font-heading font-extrabold text-xl tracking-tight text-text_primary">
-                Ascope <span className="text-accent">Tech</span>
-              </span>
+              <img 
+                src={logoImage} 
+                alt="Ascope Tech" 
+                className="h-12 w-auto object-contain" 
+              />
             </NavLink>
             <p className="text-sm text-text_muted leading-relaxed max-w-xs">
               Engineering scalable software partner helping ambitious companies design, build, and deploy elite digital products.
