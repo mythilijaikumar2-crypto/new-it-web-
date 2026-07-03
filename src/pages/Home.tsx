@@ -66,14 +66,13 @@ export const Home: React.FC = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   
   // 1. Scroll-driven responsive values
-  const { scrollY, scrollYProgress } = useScroll({
+  const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start']
   });
 
   const heroOpacity = useTransform(scrollYProgress, [0, 0.8], [1, 0.7]);
   const heroScale = useTransform(scrollYProgress, [0, 0.8], [1, 0.97]);
-  const scrollCueOpacity = useTransform(scrollY, [0, 100], [0.4, 0]);
 
   // 2. Mouse-reactive Parallax Motion Values (Desktop fine pointer only)
   const mouseX = useMotionValue(0);
@@ -304,29 +303,6 @@ export const Home: React.FC = () => {
               </Card>
             </div>
           </motion.div>
-        </motion.div>
-
-        {/* Scroll Cue */}
-        <motion.div
-          style={{ opacity: scrollCueOpacity }}
-          className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center space-y-2 pointer-events-none"
-        >
-          <span className="text-[10px] md:text-xs font-heading font-bold uppercase tracking-[0.2em] text-text_muted">
-            Scroll to explore
-          </span>
-          <div className="w-[1.5px] h-10 bg-surface relative overflow-hidden rounded-full">
-            <motion.div
-              animate={{ 
-                y: shouldReduceMotion ? 0 : [-40, 40] 
-              }}
-              transition={{ 
-                duration: 2, 
-                ease: 'easeInOut', 
-                repeat: Infinity 
-              }}
-              className="absolute top-0 left-0 w-full h-1/2 bg-secondary"
-            />
-          </div>
         </motion.div>
       </section>
 
