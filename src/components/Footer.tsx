@@ -16,7 +16,7 @@ export const Footer: React.FC = () => {
               <img 
                 src={logoImage} 
                 alt="Ascope Tech" 
-                className="h-12 w-auto object-contain" 
+                className="h-16 w-auto object-contain" 
               />
             </NavLink>
             <p className="text-sm text-text_muted leading-relaxed max-w-xs">
