@@ -137,9 +137,10 @@ export const Home: React.FC = () => {
       <section 
         ref={heroRef}
         className="relative min-h-svh w-full flex items-center justify-center bg-bg_primary overflow-hidden pt-24 pb-12"
+        style={{ clipPath: 'inset(0)' }}
       >
         {/* Background Video */}
-        <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div className="fixed inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
           <video
             autoPlay
             loop
