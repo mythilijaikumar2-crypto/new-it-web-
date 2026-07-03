@@ -108,16 +108,16 @@ export const Portfolio: React.FC = () => {
         {/* Featured spotlight card */}
         <section className="w-full">
           <FadeInSection>
-            <div className="bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 text-text_primary rounded-lg overflow-hidden grid grid-cols-1 lg:grid-cols-12 items-center border border-border_custom/60 shadow-card_default hover:shadow-[0_10px_30px_rgba(5,8,22,0.5)] transition-[border-color,box-shadow] duration-300">
-              <div className="lg:col-span-6 relative aspect-video lg:h-full bg-neutral-950">
+            <div className="bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 text-text_primary rounded-lg overflow-hidden grid grid-cols-1 lg:grid-cols-12 items-stretch border border-border_custom/60 shadow-card_default hover:shadow-[0_10px_30px_rgba(5,8,22,0.5)] transition-[border-color,box-shadow] duration-300">
+              <div className="lg:col-span-6 relative min-h-[250px] sm:min-h-[300px] lg:min-h-full bg-neutral-950">
                 <img 
                   src={STUDIES[0].image}
                   alt={STUDIES[0].title}
-                  className="object-cover w-full h-full opacity-70"
+                  className="absolute inset-0 object-cover w-full h-full opacity-70"
                   loading="lazy"
                 />
               </div>
-              <div className="lg:col-span-6 p-8 md:p-12 text-left space-y-6">
+              <div className="lg:col-span-6 p-8 md:p-12 text-left space-y-6 flex flex-col justify-center">
                 <span className="text-xs font-heading font-extrabold uppercase tracking-widest text-secondary">
                   FEATURED SPOTLIGHT
                 </span>
