@@ -10,7 +10,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className="w-full text-left">
         {label && (
-          <label className="block text-xs font-semibold uppercase tracking-wider text-text_muted mb-1">
+          <label className="block text-xs font-semibold uppercase tracking-wider text-text_secondary mb-1">
             {label}
           </label>
         )}
@@ -41,7 +41,7 @@ export const TextArea = forwardRef<HTMLTextAreaElement, TextAreaProps>(
     return (
       <div className="w-full text-left">
         {label && (
-          <label className="block text-xs font-semibold uppercase tracking-wider text-text_muted mb-1">
+          <label className="block text-xs font-semibold uppercase tracking-wider text-text_secondary mb-1">
             {label}
           </label>
         )}

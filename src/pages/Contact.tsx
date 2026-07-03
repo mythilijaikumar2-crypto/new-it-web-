@@ -4,7 +4,6 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock, ChevronDown, CheckCircle2 } from 'lucide-react';
-import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Input, TextArea } from '../components/ui/Input';
 import { FadeInSection } from '../components/ui/FadeInSection';
@@ -64,8 +63,31 @@ export const Contact: React.FC = () => {
     setOpenFaqIdx((prev) => (prev === idx ? null : idx));
   };
 
+  const cardVariants = {
+    hidden: (idx: number) => {
+      const xOffset = idx % 2 === 0 ? -40 : 0;
+      const yOffset = idx % 2 === 1 ? 40 : 20;
+      return {
+        opacity: 0,
+        x: xOffset,
+        y: yOffset,
+      };
+    },
+    visible: (idx: number) => ({
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: {
+        type: "tween" as const,
+        ease: "easeOut" as const,
+        duration: 0.45,
+        delay: shouldReduceMotion ? 0 : idx * 0.1,
+      },
+    }),
+  };
+
   return (
-    <div className="w-full pt-28 pb-16 bg-bg_primary">
+    <div className="w-full pt-28 pb-16 bg-transparent relative z-10">
       <div className="max-w-[1280px] mx-auto px-4 md:px-8 space-y-24">
         
         {/* Main contact layout */}
@@ -85,60 +107,92 @@ export const Contact: React.FC = () => {
             </div>
 
             {/* details card list */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4">
-              <div className="flex items-start space-x-4 bg-bg_secondary border border-border_custom p-6 rounded-lg">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-4 overflow-hidden py-2">
+              <motion.div
+                custom={0}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-80px" }}
+                variants={cardVariants}
+                whileHover={shouldReduceMotion ? {} : { y: -4, scale: 1.01 }}
+                className="flex items-start space-x-4 bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 border border-border_custom/60 hover:border-secondary/50 p-6 rounded-lg shadow-card_default hover:shadow-[0_8px_20px_rgba(5,8,22,0.4)] transition-[border-color,box-shadow] duration-300"
+              >
                 <MapPin className="w-6 h-6 text-secondary shrink-0 mt-0.5" />
                 <div>
                   <h3 className="font-heading font-bold text-sm text-text_primary uppercase tracking-wider mb-1">
                     HQ Location
                   </h3>
-                  <p className="text-xs md:text-sm text-text_muted">
+                  <p className="text-xs md:text-sm text-text_secondary font-medium leading-relaxed">
                     Ascope Tech, 5th floor, SBRR Square, Anna Nagar, Trichy – 620017
                   </p>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex items-start space-x-4 bg-bg_secondary border border-border_custom p-6 rounded-lg">
+              <motion.div
+                custom={1}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-80px" }}
+                variants={cardVariants}
+                whileHover={shouldReduceMotion ? {} : { y: -4, scale: 1.01 }}
+                className="flex items-start space-x-4 bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 border border-border_custom/60 hover:border-secondary/50 p-6 rounded-lg shadow-card_default hover:shadow-[0_8px_20px_rgba(5,8,22,0.4)] transition-[border-color,box-shadow] duration-300"
+              >
                 <Mail className="w-6 h-6 text-secondary shrink-0 mt-0.5" />
                 <div>
                   <h3 className="font-heading font-bold text-sm text-text_primary uppercase tracking-wider mb-1">
                     Email Inquiry
                   </h3>
-                  <a href="mailto:hello@ascopetech.com" className="text-xs md:text-sm text-text_muted hover:text-text_primary transition-colors">
+                  <a href="mailto:hello@ascopetech.com" className="text-xs md:text-sm text-text_secondary font-semibold hover:text-secondary transition-colors">
                     hello@ascopetech.com
                   </a>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex items-start space-x-4 bg-bg_secondary border border-border_custom p-6 rounded-lg">
+              <motion.div
+                custom={2}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-80px" }}
+                variants={cardVariants}
+                whileHover={shouldReduceMotion ? {} : { y: -4, scale: 1.01 }}
+                className="flex items-start space-x-4 bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 border border-border_custom/60 hover:border-secondary/50 p-6 rounded-lg shadow-card_default hover:shadow-[0_8px_20px_rgba(5,8,22,0.4)] transition-[border-color,box-shadow] duration-300"
+              >
                 <Phone className="w-6 h-6 text-secondary shrink-0 mt-0.5" />
                 <div>
                   <h3 className="font-heading font-bold text-sm text-text_primary uppercase tracking-wider mb-1">
                     Call Us
                   </h3>
-                  <a href="tel:+18005550199" className="text-xs md:text-sm text-text_muted hover:text-text_primary transition-colors">
+                  <a href="tel:+18005550199" className="text-xs md:text-sm text-text_secondary font-semibold hover:text-secondary transition-colors">
                     +1 (800) 555-0199
                   </a>
                 </div>
-              </div>
+              </motion.div>
 
-              <div className="flex items-start space-x-4 bg-bg_secondary border border-border_custom p-6 rounded-lg">
+              <motion.div
+                custom={3}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-80px" }}
+                variants={cardVariants}
+                whileHover={shouldReduceMotion ? {} : { y: -4, scale: 1.01 }}
+                className="flex items-start space-x-4 bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 border border-border_custom/60 hover:border-secondary/50 p-6 rounded-lg shadow-card_default hover:shadow-[0_8px_20px_rgba(5,8,22,0.4)] transition-[border-color,box-shadow] duration-300"
+              >
                 <Clock className="w-6 h-6 text-secondary shrink-0 mt-0.5" />
                 <div>
                   <h3 className="font-heading font-bold text-sm text-text_primary uppercase tracking-wider mb-1">
                     Work Hours
                   </h3>
-                  <p className="text-xs md:text-sm text-text_muted">
+                  <p className="text-xs md:text-sm text-text_secondary font-medium leading-relaxed">
                     Monday – Friday: 9 AM – 6 PM PST
                   </p>
                 </div>
-              </div>
+              </motion.div>
             </div>
           </div>
 
           {/* Form column */}
           <div className="lg:col-span-7">
-            <Card className="shadow-lg h-full bg-card_bg border-border_custom">
+            <div className="relative group h-full flex flex-col justify-between overflow-hidden bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 border border-border_custom/60 rounded-lg p-6 md:p-8 shadow-card_default hover:shadow-[0_10px_30px_rgba(5,8,22,0.5)] transition-[border-color,box-shadow] duration-300">
               <AnimatePresence mode="wait">
                 {!isSuccess ? (
                   <motion.form
@@ -210,7 +264,7 @@ export const Contact: React.FC = () => {
                   </motion.div>
                 )}
               </AnimatePresence>
-            </Card>
+            </div>
           </div>
         </section>
 
@@ -225,7 +279,7 @@ export const Contact: React.FC = () => {
             </h2>
           </FadeInSection>
 
-          <div className="max-w-[800px] mx-auto bg-card_bg border border-border_custom rounded-lg overflow-hidden shadow-card_default">
+          <div className="max-w-[800px] mx-auto bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 border border-border_custom/60 rounded-lg overflow-hidden shadow-card_default hover:shadow-[0_8px_20px_rgba(5,8,22,0.4)] transition-[border-color,box-shadow] duration-300">
             {FAQS.map((faq, idx) => {
               const isOpen = openFaqIdx === idx;
               return (
@@ -236,7 +290,7 @@ export const Contact: React.FC = () => {
                     aria-expanded={isOpen}
                   >
                     <span>{faq.question}</span>
-                    <ChevronDown className={`w-5 h-5 text-text_muted transition-transform duration-300 ${isOpen ? 'rotate-180 text-secondary' : ''}`} />
+                    <ChevronDown className={`w-5 h-5 text-text_secondary transition-transform duration-300 ${isOpen ? 'rotate-180 text-secondary' : ''}`} />
                   </button>
                   <AnimatePresence initial={false}>
                     {isOpen && (
@@ -247,7 +301,7 @@ export const Contact: React.FC = () => {
                         transition={{ duration: 0.25, ease: 'easeInOut' }}
                         className="overflow-hidden bg-bg_secondary/40 text-left"
                       >
-                        <p className="p-6 text-sm text-text_secondary leading-relaxed border-t border-divider">
+                        <p className="p-6 text-sm text-text_primary/95 font-medium leading-relaxed border-t border-divider">
                           {faq.answer}
                         </p>
                       </motion.div>
