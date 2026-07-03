@@ -4,6 +4,7 @@ import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Magnetic } from '../components/ui/Magnetic';
 import { FadeInSection, FadeInItem } from '../components/ui/FadeInSection';
+import { motion } from 'framer-motion';
 
 const DETAILED_SERVICES = [
   {
@@ -66,6 +67,30 @@ const ENGAGEMENT_MODELS = [
 ];
 
 export const Services: React.FC = () => {
+  const cardVariants = {
+    hidden: (idx: number) => {
+      // Determine initial slide direction based on grid column
+      const xOffset = idx % 3 === 0 ? -60 : idx % 3 === 2 ? 60 : 0;
+      const yOffset = idx % 3 === 1 ? 60 : 30; // middle slides from bottom, others have bottom lift
+      return {
+        opacity: 0,
+        x: xOffset,
+        y: yOffset,
+      };
+    },
+    visible: (idx: number) => ({
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: {
+        type: "spring" as const,
+        stiffness: 80,
+        damping: 14,
+        delay: (idx % 3) * 0.12 + Math.floor(idx / 3) * 0.08,
+      },
+    }),
+  };
+
   return (
     <div className="w-full pt-28 pb-16 bg-bg_primary">
       <div className="max-w-[1280px] mx-auto px-4 md:px-8 space-y-24">
@@ -86,36 +111,57 @@ export const Services: React.FC = () => {
         </section>
 
         {/* Services List Grid */}
-        <section>
-          <FadeInSection stagger={true} className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+        <section className="overflow-hidden py-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
             {DETAILED_SERVICES.map((srv, idx) => (
-              <FadeInItem key={idx}>
-                <Card className="h-full flex flex-col justify-between bg-card_bg border-border_custom">
+              <motion.div
+                key={idx}
+                custom={idx}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-80px" }}
+                variants={cardVariants}
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ type: "spring" as const, stiffness: 300, damping: 20 }}
+                className="h-full"
+              >
+                <div className="relative group h-full flex flex-col justify-between bg-gradient-to-b from-bg_secondary/80 to-bg_secondary/40 backdrop-blur-md border border-border_custom/60 hover:border-secondary/50 rounded-lg p-6 md:p-8 shadow-card_default hover:shadow-[0_12px_40px_rgba(6,182,212,0.15)] transition-all duration-300">
+                  {/* Decorative glowing accent bar at the top on hover */}
+                  <div className="absolute top-0 left-8 right-8 h-[2px] bg-gradient-to-r from-transparent via-secondary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
                   <div className="space-y-6">
-                    <div className="w-14 h-14 rounded-md bg-secondary/10 flex items-center justify-center">
+                    {/* Icon container - stylized with gradient and border */}
+                    <div className="w-14 h-14 rounded-xl bg-gradient-to-tr from-secondary/15 to-primary/5 flex items-center justify-center border border-secondary/20 shadow-inner group-hover:from-secondary/25 group-hover:to-primary/15 transition-all duration-300">
                       {srv.icon}
                     </div>
-                    <div className="space-y-2">
-                      <h3 className="font-heading font-extrabold text-xl text-text_primary">
+
+                    <div className="space-y-3">
+                      <h3 className="font-heading font-extrabold text-2xl text-text_primary tracking-tight group-hover:text-secondary transition-colors duration-200">
                         {srv.title}
                       </h3>
-                      <p className="text-sm text-text_muted leading-relaxed">
+                      {/* Highly visible text description */}
+                      <p className="text-sm text-text_secondary leading-relaxed font-medium">
                         {srv.desc}
                       </p>
                     </div>
-                    <ul className="space-y-2 pt-2 border-t border-divider">
+
+                    {/* Bullet Points with Cyan checkmarks and brighter text */}
+                    <ul className="space-y-2.5 pt-4 border-t border-divider">
                       {srv.details.map((detail, dIdx) => (
-                        <li key={dIdx} className="flex items-center text-xs text-text_secondary">
-                          <span className="w-1.5 h-1.5 rounded-full bg-secondary mr-2 shrink-0" />
+                        <li key={dIdx} className="flex items-center text-sm text-text_primary/95 font-medium">
+                          {/* Premium SVG checkmark icon */}
+                          <svg className="w-4 h-4 text-secondary mr-2.5 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="3">
+                            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                          </svg>
                           <span>{detail}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
-                </Card>
-              </FadeInItem>
+                </div>
+              </motion.div>
             ))}
-          </FadeInSection>
+          </div>
         </section>
 
         {/* Engagement Models */}
