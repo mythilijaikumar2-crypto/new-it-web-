@@ -3,7 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
 import { TRANSITIONS } from '../lib/motion';
-import logoImage from '../assets/Ascope Tech png logo banner.png';
+import logoImage from '../assets/Ascope Tech logo transparent.png';
 
 const LINKS = [
   { name: 'Home', path: '/' },
