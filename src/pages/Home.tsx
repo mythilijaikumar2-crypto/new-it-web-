@@ -429,7 +429,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* 5. PROCESS/HOW WE WORK */}
-      <section className="relative z-10 py-20 md:py-28 bg-bg_primary border-b border-divider overflow-hidden">
+      <section className="relative z-10 py-20 md:py-28 bg-transparent border-b border-divider overflow-hidden">
         <div className="max-w-[1280px] mx-auto px-4 md:px-8">
           <FadeInSection className="max-w-xl mx-auto space-y-4 text-center mb-16">
             <span className="text-xs font-heading font-extrabold uppercase tracking-widest text-secondary">
