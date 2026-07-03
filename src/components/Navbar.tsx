@@ -3,6 +3,7 @@ import { NavLink, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { ChevronRight } from 'lucide-react';
 import { TRANSITIONS } from '../lib/motion';
+import logoImage from '../assets/Ascope Tech png logo banner.png';
 
 const LINKS = [
   { name: 'Home', path: '/' },
@@ -86,9 +87,11 @@ export const Navbar: React.FC = () => {
       <div className="max-w-[1280px] mx-auto px-4 md:px-8 flex items-center justify-between">
         {/* Logo */}
         <NavLink to="/" className="flex items-center space-x-2 z-50">
-          <span className="font-heading font-extrabold text-lg md:text-xl tracking-tight text-text_primary flex items-center">
-            Ascope <span className="text-accent ml-1">Tech</span>
-          </span>
+          <img 
+            src={logoImage} 
+            alt="Ascope Tech" 
+            className="h-8 md:h-10 w-auto object-contain" 
+          />
         </NavLink>
 
         {/* Desktop Navbar (>= 768px) */}
