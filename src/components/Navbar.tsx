@@ -88,7 +88,7 @@ export const Navbar: React.FC = () => {
           <img 
             src={logoImage} 
             alt="Ascope Tech" 
-            className="h-12 md:h-16 w-auto object-contain" 
+            className="h-16 md:h-24 w-auto object-contain" 
           />
         </NavLink>
  
