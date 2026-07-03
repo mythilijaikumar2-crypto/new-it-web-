@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { Navbar } from './components/Navbar';
 import { Footer } from './components/Footer';
 import { TRANSITIONS } from './lib/motion';
+import h1Video from './assets/h1.mp4';
 
 // Route-level Code Splitting (React.lazy)
 const Home = lazy(() => import('./pages/Home'));
@@ -88,8 +89,22 @@ const AnimatedRoutes: React.FC = () => {
 export const App: React.FC = () => {
   return (
     <BrowserRouter>
+      <div className="flex flex-col min-h-screen w-full bg-bg_primary text-text_primary select-none relative">
+        {/* Global Background Video (Fixed/Sticky) */}
+        <div className="fixed inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-20"
+          >
+            <source src={h1Video} type="video/mp4" />
+          </video>
+          {/* Global Dark overlay to ensure readability */}
+          <div className="absolute inset-0 bg-bg_primary/75" />
+        </div>
 
-      <div className="flex flex-col min-h-screen w-full bg-bg_primary text-text_primary select-none">
         {/* Navbar */}
         <Navbar />
 

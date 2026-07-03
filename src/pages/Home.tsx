@@ -10,7 +10,6 @@ import { Magnetic } from '../components/ui/Magnetic';
 import { StatsCounter } from '../components/StatsCounter';
 import { ProcessTimeline } from '../components/ProcessTimeline';
 import { TestimonialCarousel } from '../components/TestimonialCarousel';
-import h1Video from '../assets/h1.mp4';
 
 const LOGOS = ['Google', 'Microsoft', 'AWS', 'Stripe', 'Airbnb', 'HubSpot', 'Shopify'];
 
@@ -132,22 +131,7 @@ export const Home: React.FC = () => {
   const headlineWords = "Engineering Scalable Software for Ambitious Businesses".split(' ');
 
   return (
-    <div className="w-full bg-bg_primary relative">
-      {/* Global Background Video (Fixed/Sticky) */}
-      <div className="fixed inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="w-full h-full object-cover opacity-20"
-        >
-          <source src={h1Video} type="video/mp4" />
-        </video>
-        {/* Global Dark overlay to ensure readability */}
-        <div className="absolute inset-0 bg-bg_primary/75" />
-      </div>
-
+    <div className="w-full bg-transparent relative z-10">
       {/* 1. HERO SECTION */}
       <section 
         ref={heroRef}
