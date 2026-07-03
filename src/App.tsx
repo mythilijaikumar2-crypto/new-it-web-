@@ -97,12 +97,12 @@ export const App: React.FC = () => {
             loop
             muted
             playsInline
-            className="w-full h-full object-cover opacity-20"
+            className="w-full h-full object-cover opacity-40"
           >
             <source src={h1Video} type="video/mp4" />
           </video>
           {/* Global Dark overlay to ensure readability */}
-          <div className="absolute inset-0 bg-bg_primary/75" />
+          <div className="absolute inset-0 bg-bg_primary/55" />
         </div>
 
         {/* Navbar */}
