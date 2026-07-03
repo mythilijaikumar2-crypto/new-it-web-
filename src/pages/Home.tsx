@@ -10,6 +10,7 @@ import { Magnetic } from '../components/ui/Magnetic';
 import { StatsCounter } from '../components/StatsCounter';
 import { ProcessTimeline } from '../components/ProcessTimeline';
 import { TestimonialCarousel } from '../components/TestimonialCarousel';
+import h1Video from '../assets/h1.mp4';
 
 const LOGOS = ['Google', 'Microsoft', 'AWS', 'Stripe', 'Airbnb', 'HubSpot', 'Shopify'];
 
@@ -137,8 +138,23 @@ export const Home: React.FC = () => {
         ref={heroRef}
         className="relative min-h-svh w-full flex items-center justify-center bg-bg_primary overflow-hidden pt-24 pb-12"
       >
+        {/* Background Video */}
+        <div className="absolute inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            className="w-full h-full object-cover opacity-35"
+          >
+            <source src={h1Video} type="video/mp4" />
+          </video>
+          {/* Overlay to ensure readability and merge seamlessly with the page layout */}
+          <div className="absolute inset-0 bg-gradient-to-b from-bg_primary/20 via-bg_primary/50 to-bg_primary" />
+        </div>
+
         {/* Soft-blurred background gradient shapes (with mouse parallax + scroll drift) */}
-        <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 pointer-events-none z-0">
           <motion.div
             style={{ x: bgBlob1X, y: bgBlob1Y }}
             initial={{ opacity: 0 }}
