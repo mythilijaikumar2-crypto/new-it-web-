@@ -4,7 +4,7 @@ import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Magnetic } from '../components/ui/Magnetic';
 import { FadeInSection, FadeInItem } from '../components/ui/FadeInSection';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 
 const DETAILED_SERVICES = [
   {
@@ -67,11 +67,13 @@ const ENGAGEMENT_MODELS = [
 ];
 
 export const Services: React.FC = () => {
+  const shouldReduceMotion = useReducedMotion();
+  
   const cardVariants = {
     hidden: (idx: number) => {
       // Determine initial slide direction based on grid column
-      const xOffset = idx % 3 === 0 ? -60 : idx % 3 === 2 ? 60 : 0;
-      const yOffset = idx % 3 === 1 ? 60 : 30; // middle slides from bottom, others have bottom lift
+      const xOffset = idx % 3 === 0 ? -40 : idx % 3 === 2 ? 40 : 0;
+      const yOffset = idx % 3 === 1 ? 40 : 20;
       return {
         opacity: 0,
         x: xOffset,
@@ -83,10 +85,10 @@ export const Services: React.FC = () => {
       x: 0,
       y: 0,
       transition: {
-        type: "spring" as const,
-        stiffness: 80,
-        damping: 14,
-        delay: (idx % 3) * 0.12 + Math.floor(idx / 3) * 0.08,
+        type: "tween" as const,
+        ease: "easeOut" as const,
+        duration: 0.45,
+        delay: shouldReduceMotion ? 0 : (idx % 3) * 0.1 + Math.floor(idx / 3) * 0.06,
       },
     }),
   };
@@ -121,11 +123,11 @@ export const Services: React.FC = () => {
                 whileInView="visible"
                 viewport={{ once: true, margin: "-80px" }}
                 variants={cardVariants}
-                whileHover={{ y: -8, scale: 1.02 }}
-                transition={{ type: "spring" as const, stiffness: 300, damping: 20 }}
+                whileHover={shouldReduceMotion ? {} : { y: -6, scale: 1.01 }}
+                transition={{ type: "tween" as const, ease: "easeOut", duration: 0.2 }}
                 className="h-full"
               >
-                <div className="relative group h-full flex flex-col justify-between bg-gradient-to-b from-bg_secondary/80 to-bg_secondary/40 backdrop-blur-md border border-border_custom/60 hover:border-secondary/50 rounded-lg p-6 md:p-8 shadow-card_default hover:shadow-[0_12px_40px_rgba(6,182,212,0.15)] transition-all duration-300">
+                <div className="relative group h-full flex flex-col justify-between bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 border border-border_custom/60 hover:border-secondary/50 rounded-lg p-6 md:p-8 shadow-card_default hover:shadow-[0_10px_30px_rgba(5,8,22,0.6)] transition-[border-color,box-shadow] duration-300">
                   {/* Decorative glowing accent bar at the top on hover */}
                   <div className="absolute top-0 left-8 right-8 h-[2px] bg-gradient-to-r from-transparent via-secondary to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
