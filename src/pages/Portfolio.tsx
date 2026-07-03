@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { ArrowRight, ExternalLink } from 'lucide-react';
-import { Card } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { FadeInSection } from '../components/ui/FadeInSection';
 
@@ -59,8 +58,36 @@ export const Portfolio: React.FC = () => {
     ? STUDIES
     : STUDIES.filter(study => study.category === selectedCategory);
 
+  const cardVariants = {
+    hidden: (idx: number) => {
+      const xOffset = idx % 3 === 0 ? -40 : idx % 3 === 2 ? 40 : 0;
+      const yOffset = idx % 3 === 1 ? 40 : 20;
+      return {
+        opacity: 0,
+        x: xOffset,
+        y: yOffset,
+      };
+    },
+    visible: (idx: number) => ({
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: {
+        type: "tween" as const,
+        ease: "easeOut" as const,
+        duration: 0.45,
+        delay: shouldReduceMotion ? 0 : (idx % 3) * 0.1,
+      },
+    }),
+    exit: {
+      opacity: 0,
+      scale: 0.95,
+      transition: { duration: 0.25, ease: "easeIn" as const }
+    }
+  };
+
   return (
-    <div className="w-full pt-28 pb-16 bg-bg_primary">
+    <div className="w-full pt-28 pb-16 bg-transparent relative z-10">
       <div className="max-w-[1280px] mx-auto px-4 md:px-8 space-y-20">
         
         {/* Header section */}
@@ -81,12 +108,12 @@ export const Portfolio: React.FC = () => {
         {/* Featured spotlight card */}
         <section className="w-full">
           <FadeInSection>
-            <div className="bg-bg_secondary text-text_primary rounded-lg overflow-hidden grid grid-cols-1 lg:grid-cols-12 items-center border border-border_custom shadow-card_hover">
+            <div className="bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 text-text_primary rounded-lg overflow-hidden grid grid-cols-1 lg:grid-cols-12 items-center border border-border_custom/60 shadow-card_default hover:shadow-[0_10px_30px_rgba(5,8,22,0.5)] transition-[border-color,box-shadow] duration-300">
               <div className="lg:col-span-6 relative aspect-video lg:h-full bg-neutral-950">
                 <img 
                   src={STUDIES[0].image}
                   alt={STUDIES[0].title}
-                  className="object-cover w-full h-full opacity-60"
+                  className="object-cover w-full h-full opacity-70"
                   loading="lazy"
                 />
               </div>
@@ -97,12 +124,12 @@ export const Portfolio: React.FC = () => {
                 <h2 className="font-heading font-extrabold text-2xl md:text-3xl leading-tight text-text_primary">
                   {STUDIES[0].title}
                 </h2>
-                <p className="text-sm md:text-base text-text_secondary leading-relaxed">
+                <p className="text-sm md:text-base text-text_primary/95 leading-relaxed font-medium">
                   We built a redundant Kafka transaction ledger in Go that processes live trades under strict compliance constraints. Verified throughput exceeded 10k transactions per second.
                 </p>
                 <div className="flex flex-wrap gap-2 pt-2">
                   {STUDIES[0].tags.map((tag, idx) => (
-                    <span key={idx} className="bg-surface text-text_secondary text-xs px-3 py-1 rounded-sm font-semibold border border-border_custom/50">
+                    <span key={idx} className="bg-surface/60 text-text_primary text-xs px-3 py-1 rounded-sm font-semibold border border-border_custom/60">
                       {tag}
                     </span>
                   ))}
@@ -155,16 +182,19 @@ export const Portfolio: React.FC = () => {
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             <AnimatePresence mode="popLayout">
-              {filteredStudies.map((study) => (
+              {filteredStudies.map((study, idx) => (
                 <motion.div
                   key={study.id}
                   layout={!shouldReduceMotion}
-                  initial={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={shouldReduceMotion ? { opacity: 0 } : { opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3 }}
+                  custom={idx}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                  variants={cardVariants}
+                  whileHover={shouldReduceMotion ? {} : { y: -6, scale: 1.015 }}
+                  className="h-full"
                 >
-                  <Card className="p-0 group h-full flex flex-col justify-between overflow-hidden bg-card_bg border-border_custom">
+                  <div className="relative group h-full flex flex-col justify-between overflow-hidden bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 border border-border_custom/60 hover:border-secondary/50 rounded-lg shadow-card_default hover:shadow-[0_10px_30px_rgba(5,8,22,0.5)] transition-[border-color,box-shadow] duration-300">
                     <div>
                       <div className="relative aspect-video w-full overflow-hidden bg-surface">
                         <img 
@@ -178,10 +208,10 @@ export const Portfolio: React.FC = () => {
                         <span className="text-xs font-semibold text-secondary uppercase tracking-wider">
                           {study.category}
                         </span>
-                        <h3 className="font-heading font-extrabold text-lg text-text_primary leading-tight">
+                        <h3 className="font-heading font-extrabold text-xl text-text_primary leading-tight group-hover:text-secondary transition-colors duration-200">
                           {study.title}
                         </h3>
-                        <p className="text-xs md:text-sm text-text_muted leading-relaxed">
+                        <p className="text-xs md:text-sm text-text_secondary leading-relaxed font-medium">
                           {study.desc}
                         </p>
                       </div>
@@ -190,7 +220,7 @@ export const Portfolio: React.FC = () => {
                     <div className="p-6 pt-0 mt-auto">
                       <div className="flex flex-wrap gap-1.5 mb-4">
                         {study.tags.map((tag, idx) => (
-                          <span key={idx} className="bg-surface text-text_secondary text-[10px] font-semibold px-2 py-0.5 rounded-sm border border-border_custom/40">
+                          <span key={idx} className="bg-surface/60 text-text_primary text-[10px] font-semibold px-2 py-0.5 rounded-sm border border-border_custom/60">
                             {tag}
                           </span>
                         ))}
@@ -200,7 +230,7 @@ export const Portfolio: React.FC = () => {
                         <ArrowRight className="w-4 h-4 ml-1.5 group-hover:translate-x-1 transition-transform" />
                       </div>
                     </div>
-                  </Card>
+                  </div>
                 </motion.div>
               ))}
             </AnimatePresence>
