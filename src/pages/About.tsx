@@ -1,7 +1,7 @@
 import React from 'react';
 import { Target, Eye, Shield, Users, Trophy } from 'lucide-react';
-import { Card } from '../components/ui/Card';
-import { FadeInSection, FadeInItem } from '../components/ui/FadeInSection';
+import { FadeInSection } from '../components/ui/FadeInSection';
+import { motion, useReducedMotion } from 'framer-motion';
 
 const TEAM = [
   {
@@ -49,8 +49,33 @@ const MILESTONES = [
 ];
 
 export const About: React.FC = () => {
+  const shouldReduceMotion = useReducedMotion();
+
+  const cardVariants = {
+    hidden: (idx: number) => {
+      const xOffset = idx % 3 === 0 ? -40 : idx % 3 === 2 ? 40 : 0;
+      const yOffset = idx % 3 === 1 ? 40 : 20;
+      return {
+        opacity: 0,
+        x: xOffset,
+        y: yOffset,
+      };
+    },
+    visible: (idx: number) => ({
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: {
+        type: "tween" as const,
+        ease: "easeOut" as const,
+        duration: 0.45,
+        delay: shouldReduceMotion ? 0 : (idx % 3) * 0.1 + Math.floor(idx / 3) * 0.05,
+      },
+    }),
+  };
+
   return (
-    <div className="w-full pt-28 pb-16 bg-bg_primary">
+    <div className="w-full pt-28 pb-16 bg-transparent relative z-10">
       <div className="max-w-[1280px] mx-auto px-4 md:px-8 space-y-24">
         
         {/* Story Section */}
@@ -65,7 +90,7 @@ export const About: React.FC = () => {
             <p className="text-base md:text-lg text-text_secondary leading-relaxed">
               Founded in 2021, Ascope Tech was built on a simple premise: businesses deserve elite software engineering without the overhead of massive legacy consulting firms.
             </p>
-            <p className="text-sm md:text-base text-text_muted leading-relaxed">
+            <p className="text-sm md:text-base text-text_secondary leading-relaxed font-medium">
               We recruit senior talent, enforce strict TypeScript standards, and maintain automated regression pipelines. Our mission is to serve as an extension of your product team—writing code that stands up to production loads and lasts for years.
             </p>
           </FadeInSection>
@@ -80,34 +105,52 @@ export const About: React.FC = () => {
         </section>
 
         {/* Mission & Vision */}
-        <section className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <FadeInSection className="text-left">
-            <Card className="h-full flex flex-col items-start space-y-4">
-              <div className="w-12 h-12 rounded-md bg-primary/10 flex items-center justify-center">
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-8 overflow-hidden py-2">
+          <motion.div
+            custom={0}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={cardVariants}
+            whileHover={shouldReduceMotion ? {} : { y: -6, scale: 1.01 }}
+            transition={{ type: "tween" as const, ease: "easeOut" as const, duration: 0.2 }}
+            className="text-left h-full"
+          >
+            <div className="h-full flex flex-col items-start space-y-4 bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 border border-border_custom/60 rounded-lg p-6 md:p-8 shadow-card_default hover:shadow-[0_10px_30px_rgba(5,8,22,0.5)] transition-[border-color,box-shadow] duration-300">
+              <div className="w-12 h-12 rounded-md bg-primary/10 flex items-center justify-center border border-primary/20">
                 <Target className="w-6 h-6 text-primary" />
               </div>
-              <h2 className="font-heading font-extrabold text-xl text-text_primary">
+              <h2 className="font-heading font-extrabold text-2xl text-text_primary">
                 Our Mission
               </h2>
-              <p className="text-sm md:text-base text-text_muted leading-relaxed">
+              <p className="text-sm md:text-base text-text_secondary leading-relaxed font-medium">
                 To build high-performance software systems that empower ambitious businesses to scale. We deliver clean architecture, clear documentation, and bulletproof deployment pipelines.
               </p>
-            </Card>
-          </FadeInSection>
+            </div>
+          </motion.div>
 
-          <FadeInSection delay={0.1} className="text-left">
-            <Card className="h-full flex flex-col items-start space-y-4">
-              <div className="w-12 h-12 rounded-md bg-secondary/10 flex items-center justify-center">
+          <motion.div
+            custom={2}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-80px" }}
+            variants={cardVariants}
+            whileHover={shouldReduceMotion ? {} : { y: -6, scale: 1.01 }}
+            transition={{ type: "tween" as const, ease: "easeOut" as const, duration: 0.2 }}
+            className="text-left h-full"
+          >
+            <div className="h-full flex flex-col items-start space-y-4 bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 border border-border_custom/60 rounded-lg p-6 md:p-8 shadow-card_default hover:shadow-[0_10px_30px_rgba(5,8,22,0.5)] transition-[border-color,box-shadow] duration-300">
+              <div className="w-12 h-12 rounded-md bg-secondary/10 flex items-center justify-center border border-secondary/20">
                 <Eye className="w-6 h-6 text-secondary" />
               </div>
-              <h2 className="font-heading font-extrabold text-xl text-text_primary">
+              <h2 className="font-heading font-extrabold text-2xl text-text_primary">
                 Our Vision
               </h2>
-              <p className="text-sm md:text-base text-text_muted leading-relaxed">
+              <p className="text-sm md:text-base text-text_secondary leading-relaxed font-medium">
                 To become the global standard for custom product development—known for engineering rigor, transparent project workflows, and outstanding visual execution.
               </p>
-            </Card>
-          </FadeInSection>
+            </div>
+          </motion.div>
         </section>
 
         {/* Values */}
@@ -121,23 +164,33 @@ export const About: React.FC = () => {
             </h2>
           </FadeInSection>
 
-          <FadeInSection stagger={true} className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-left">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 text-left overflow-hidden py-2">
             {VALUES.map((val, idx) => (
-              <FadeInItem key={idx}>
-                <Card className="h-full space-y-4">
-                  <div className="w-12 h-12 rounded-md bg-secondary/10 flex items-center justify-center">
+              <motion.div
+                key={idx}
+                custom={idx}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-80px" }}
+                variants={cardVariants}
+                whileHover={shouldReduceMotion ? {} : { y: -6, scale: 1.015 }}
+                transition={{ type: "tween" as const, ease: "easeOut" as const, duration: 0.2 }}
+                className="h-full"
+              >
+                <div className="group h-full space-y-4 bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 border border-border_custom/60 hover:border-secondary/50 rounded-lg p-6 md:p-8 shadow-card_default hover:shadow-[0_10px_30px_rgba(5,8,22,0.5)] transition-[border-color,box-shadow] duration-300">
+                  <div className="w-12 h-12 rounded-md bg-secondary/10 flex items-center justify-center border border-secondary/20 group-hover:bg-secondary/20 transition-colors duration-200">
                     {val.icon}
                   </div>
-                  <h3 className="font-heading font-extrabold text-lg text-text_primary">
+                  <h3 className="font-heading font-extrabold text-xl text-text_primary group-hover:text-secondary transition-colors duration-200">
                     {val.title}
                   </h3>
-                  <p className="text-sm text-text_muted leading-relaxed">
+                  <p className="text-sm text-text_secondary leading-relaxed font-medium">
                     {val.description}
                   </p>
-                </Card>
-              </FadeInItem>
+                </div>
+              </motion.div>
             ))}
-          </FadeInSection>
+          </div>
         </section>
 
         {/* Team Grid */}
@@ -151,33 +204,43 @@ export const About: React.FC = () => {
             </h2>
           </FadeInSection>
 
-          <FadeInSection stagger={true} className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-left overflow-hidden py-2">
             {TEAM.map((member, idx) => (
-              <FadeInItem key={idx}>
-                <Card className="p-0 overflow-hidden flex flex-col h-full">
+              <motion.div
+                key={idx}
+                custom={idx}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-80px" }}
+                variants={cardVariants}
+                whileHover={shouldReduceMotion ? {} : { y: -6, scale: 1.015 }}
+                transition={{ type: "tween" as const, ease: "easeOut" as const, duration: 0.2 }}
+                className="h-full"
+              >
+                <div className="group h-full flex flex-col overflow-hidden bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 border border-border_custom/60 hover:border-secondary/50 rounded-lg shadow-card_default hover:shadow-[0_10px_30px_rgba(5,8,22,0.5)] transition-[border-color,box-shadow] duration-300">
                   <div className="aspect-4/3 w-full bg-surface overflow-hidden">
                     <img 
                       src={member.image} 
                       alt={member.name}
-                      className="w-full h-full object-cover opacity-80 hover:scale-105 transition-transform duration-500"
+                      className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500"
                       loading="lazy"
                     />
                   </div>
                   <div className="p-6 space-y-2 grow">
-                    <h3 className="font-heading font-extrabold text-lg text-text_primary">
+                    <h3 className="font-heading font-extrabold text-xl text-text_primary group-hover:text-secondary transition-colors duration-200">
                       {member.name}
                     </h3>
                     <p className="text-xs font-semibold text-secondary uppercase tracking-wider">
                       {member.role}
                     </p>
-                    <p className="text-sm text-text_muted leading-relaxed pt-2">
+                    <p className="text-sm text-text_secondary leading-relaxed pt-2 font-medium">
                       {member.bio}
                     </p>
                   </div>
-                </Card>
-              </FadeInItem>
+                </div>
+              </motion.div>
             ))}
-          </FadeInSection>
+          </div>
         </section>
 
         {/* Timeline milestones */}
@@ -203,14 +266,14 @@ export const About: React.FC = () => {
                     <div className="absolute left-6 md:left-1/2 w-4 h-4 rounded-full bg-secondary border-4 border-bg_primary -translate-x-1/2 z-10 shadow-[0_0_8px_rgba(6,182,212,0.5)]" />
                     
                     <FadeInSection className="w-full md:w-[45%] pl-12 md:pl-0">
-                      <div className="bg-card_bg border border-border_custom p-6 rounded-lg shadow-card_default">
+                      <div className="bg-gradient-to-b from-bg_secondary/95 to-bg_secondary/90 border border-border_custom/60 p-6 rounded-lg shadow-card_default hover:shadow-[0_8px_20px_rgba(5,8,22,0.4)] transition-[border-color,box-shadow] duration-300">
                         <span className="font-heading font-extrabold text-lg text-secondary">
                           {stone.year}
                         </span>
                         <h4 className="font-heading font-extrabold text-base text-text_primary mt-1">
                           {stone.title}
                         </h4>
-                        <p className="text-sm text-text_muted mt-2 leading-relaxed">
+                        <p className="text-sm text-text_secondary mt-2 leading-relaxed font-medium">
                           {stone.desc}
                         </p>
                       </div>
