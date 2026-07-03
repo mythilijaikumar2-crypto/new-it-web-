@@ -132,28 +132,27 @@ export const Home: React.FC = () => {
   const headlineWords = "Engineering Scalable Software for Ambitious Businesses".split(' ');
 
   return (
-    <div className="w-full bg-bg_primary">
+    <div className="w-full bg-bg_primary relative">
+      {/* Global Background Video (Fixed/Sticky) */}
+      <div className="fixed inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="w-full h-full object-cover opacity-20"
+        >
+          <source src={h1Video} type="video/mp4" />
+        </video>
+        {/* Global Dark overlay to ensure readability */}
+        <div className="absolute inset-0 bg-bg_primary/75" />
+      </div>
+
       {/* 1. HERO SECTION */}
       <section 
         ref={heroRef}
-        className="relative min-h-svh w-full flex items-center justify-center bg-bg_primary overflow-hidden pt-24 pb-12"
-        style={{ clipPath: 'inset(0)' }}
+        className="relative z-10 min-h-svh w-full flex items-center justify-center bg-transparent overflow-hidden pt-24 pb-12"
       >
-        {/* Background Video */}
-        <div className="fixed inset-0 w-full h-full overflow-hidden pointer-events-none z-0">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover opacity-35"
-          >
-            <source src={h1Video} type="video/mp4" />
-          </video>
-          {/* Overlay to ensure readability and merge seamlessly with the page layout */}
-          <div className="absolute inset-0 bg-gradient-to-b from-bg_primary/20 via-bg_primary/50 to-bg_primary" />
-        </div>
-
         {/* Soft-blurred background gradient shapes (with mouse parallax + scroll drift) */}
         <div className="absolute inset-0 pointer-events-none z-0">
           <motion.div
@@ -348,7 +347,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* 2. TRUST BAR / LOGO MARQUEE */}
-      <section className="bg-bg_secondary py-8 border-y border-divider overflow-hidden">
+      <section className="relative z-10 bg-bg_secondary py-8 border-y border-divider overflow-hidden">
         <div className="max-w-[1280px] mx-auto px-4 md:px-8">
           <p className="text-xs text-text_muted font-semibold uppercase tracking-widest text-center mb-6">
             Trusted by engineers and builders at leading organizations
@@ -377,7 +376,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* 3. SERVICES GRID */}
-      <section className="py-20 md:py-28 bg-bg_primary border-b border-divider">
+      <section className="relative z-10 py-20 md:py-28 bg-transparent border-b border-divider">
         <div className="max-w-[1280px] mx-auto px-4 md:px-8 text-center">
           <FadeInSection className="max-w-xl mx-auto space-y-4 mb-16">
             <span className="text-xs font-heading font-extrabold uppercase tracking-widest text-secondary">
@@ -421,7 +420,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* 4. STATS COUNTER */}
-      <section className="py-16 md:py-20 bg-bg_secondary border-b border-divider">
+      <section className="relative z-10 py-16 md:py-20 bg-bg_secondary border-b border-divider">
         <div className="max-w-[1280px] mx-auto px-4 md:px-8">
           <FadeInSection>
             <StatsCounter />
@@ -430,7 +429,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* 5. PROCESS/HOW WE WORK */}
-      <section className="py-20 md:py-28 bg-bg_primary border-b border-divider overflow-hidden">
+      <section className="relative z-10 py-20 md:py-28 bg-bg_primary border-b border-divider overflow-hidden">
         <div className="max-w-[1280px] mx-auto px-4 md:px-8">
           <FadeInSection className="max-w-xl mx-auto space-y-4 text-center mb-16">
             <span className="text-xs font-heading font-extrabold uppercase tracking-widest text-secondary">
@@ -449,7 +448,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* 6. FEATURED CASE STUDIES */}
-      <section className="py-20 md:py-28 bg-bg_secondary border-b border-divider">
+      <section className="relative z-10 py-20 md:py-28 bg-bg_secondary border-b border-divider">
         <div className="max-w-[1280px] mx-auto px-4 md:px-8">
           <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12 md:mb-16">
             <FadeInSection className="space-y-4 text-left max-w-lg">
@@ -505,7 +504,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* 7. CLIENT TESTIMONIALS */}
-      <section className="py-20 md:py-28 bg-bg_primary border-b border-divider">
+      <section className="relative z-10 py-20 md:py-28 bg-bg_primary border-b border-divider">
         <div className="max-w-[1280px] mx-auto px-4 md:px-8 text-center">
           <FadeInSection className="max-w-xl mx-auto space-y-4 mb-16">
             <span className="text-xs font-heading font-extrabold uppercase tracking-widest text-secondary">
@@ -526,7 +525,7 @@ export const Home: React.FC = () => {
       </section>
 
       {/* 8. CLOSING CTA BANNER */}
-      <section className="py-20 md:py-28 bg-bg_secondary text-text_primary relative overflow-hidden border-t border-divider">
+      <section className="relative z-10 py-20 md:py-28 bg-bg_secondary text-text_primary overflow-hidden border-t border-divider">
         <div className="absolute inset-0 pointer-events-none opacity-20">
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-accent/20 blur-[120px]" />
         </div>
