@@ -48,7 +48,7 @@ const SERVICES = [
 
 const CASE_STUDIES = [
   {
-    title: "Aliteapexcart",
+    title: "Eliteapexkart",
     category: "E-Commerce",
     desc: "Engineered a high-performance, SEO-optimized headless e-commerce store with modern cart architecture and instant checkout.",
     image: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=600&q=80"

@@ -39,6 +39,7 @@ const FAQS = [
 export const Contact: React.FC = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [openFaqIdx, setOpenFaqIdx] = useState<number | null>(null);
+  const [whatsappUrl, setWhatsappUrl] = useState('');
   const shouldReduceMotion = useReducedMotion();
 
   const {
@@ -52,8 +53,20 @@ export const Contact: React.FC = () => {
 
   const onSubmit = async (data: ContactFormData) => {
     console.log('Contact form submitted:', data);
-    // Mock API call delay
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    
+    // Format the WhatsApp message (using standard phone number format: 917418240526)
+    const formattedMessage = `*New Contact Inquiry*\n\n` +
+      `*Name:* ${data.name}\n` +
+      `*Email:* ${data.email}\n` +
+      `*Subject:* ${data.subject}\n\n` +
+      `*Message:* ${data.message}`;
+
+    const url = `https://wa.me/917418240526?text=${encodeURIComponent(formattedMessage)}`;
+    setWhatsappUrl(url);
+    
+    // Open in a new tab
+    window.open(url, '_blank', 'noopener,noreferrer');
+
     setIsSuccess(true);
     reset();
   };
@@ -314,13 +327,18 @@ export const Contact: React.FC = () => {
                     className="flex flex-col items-center justify-center py-16 text-center space-y-4"
                   >
                     <CheckCircle2 className="w-16 h-16 text-green-500" />
-                    <h3 className="font-heading font-extrabold text-2xl text-text_primary">
-                      Thank You!
+                     <h3 className="font-heading font-extrabold text-2xl text-text_primary">
+                      Opening WhatsApp...
                     </h3>
                     <p className="text-sm md:text-base text-text_secondary max-w-sm">
-                      We have received your message. Our technical managers will review your requirements and reach out within 24 hours.
+                      We are opening WhatsApp to send your inquiry. If the window did not open automatically, please click the button below.
                     </p>
-                    <div className="pt-4">
+                    <div className="flex flex-col sm:flex-row gap-3 pt-4 justify-center">
+                      <a href={whatsappUrl} target="_blank" rel="noopener noreferrer" className="inline-block">
+                        <Button type="button" className="bg-green-600 hover:bg-green-500 hover:shadow-[0_0_20px_rgba(34,197,94,0.4)] text-text_primary shadow-md">
+                          Send via WhatsApp
+                        </Button>
+                      </a>
                       <Button onClick={() => setIsSuccess(false)} variant="secondary">
                         Submit another form
                       </Button>
