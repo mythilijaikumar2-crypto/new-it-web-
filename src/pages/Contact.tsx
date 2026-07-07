@@ -155,8 +155,8 @@ export const Contact: React.FC = () => {
                   <h3 className="font-heading font-extrabold text-xs text-text_primary uppercase tracking-wider mb-1">
                     Email Inquiry
                   </h3>
-                  <a href="mailto:hello@ascopetech.com" className="text-xs md:text-sm text-text_secondary font-semibold hover:text-secondary transition-colors">
-                    hello@ascopetech.com
+                  <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ascopetech@gmail.com" target="_blank" rel="noopener noreferrer" className="text-xs md:text-sm text-text_secondary font-semibold hover:text-secondary transition-colors">
+                    ascopetech@gmail.com
                   </a>
                 </div>
               </motion.div>
@@ -177,8 +177,8 @@ export const Contact: React.FC = () => {
                   <h3 className="font-heading font-extrabold text-xs text-text_primary uppercase tracking-wider mb-1">
                     Call Us
                   </h3>
-                  <a href="tel:+18005550199" className="text-xs md:text-sm text-text_secondary font-semibold hover:text-secondary transition-colors">
-                    +1 (800) 555-0199
+                  <a href="tel:+917418240526" className="text-xs md:text-sm text-text_secondary font-semibold hover:text-secondary transition-colors">
+                    +91 74182 40526
                   </a>
                 </div>
               </motion.div>
@@ -215,7 +215,7 @@ export const Contact: React.FC = () => {
               <p className="text-xs text-text_secondary leading-relaxed font-medium">
                 Prefer a direct technical walkthrough? Book a 30-min architecture scoping call with our Lead Architect.
               </p>
-              <a href="mailto:hello@ascopetech.com?subject=Technical Scoping Call Request" className="inline-flex items-center text-xs font-bold text-secondary hover:underline">
+              <a href="https://mail.google.com/mail/?view=cm&fs=1&to=ascopetech@gmail.com&su=Technical%20Scoping%20Call%20Request" target="_blank" rel="noopener noreferrer" className="inline-flex items-center text-xs font-bold text-secondary hover:underline">
                 <span>Book a session</span>
                 <ArrowRight className="w-3.5 h-3.5 ml-1" />
               </a>

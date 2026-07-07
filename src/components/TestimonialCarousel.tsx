@@ -6,31 +6,43 @@ import { TRANSITIONS } from '../lib/motion';
 const TESTIMONIALS = [
   {
     quote: "Ascope Tech designed and delivered our core cloud infrastructure in record time. Their architectural advice was flawless, and the performance has been outstanding.",
-    author: "Sarah Jenkins",
-    role: "CTO",
-    company: "SaaSify Logistics",
+    author: "Saranya Krishnan",
     avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80"
   },
   {
     quote: "The team at Ascope Tech are elite engineering partners. They stepped in to rescue a failing mobile app codebase and turned it into our highest-rated product.",
-    author: "David Chen",
-    role: "VP of Product",
-    company: "Flexipay FinTech",
+    author: "Karthik Srinivasan",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80"
   },
   {
     quote: "IT Staff Augmentation from Ascope Tech helped us scale our engineering team by 5 senior engineers in a week. Outstanding quality of code and work ethic.",
-    author: "Marcus Thompson",
-    role: "Engineering Director",
-    company: "AeroDynamics",
+    author: "Hariharan Venkatesan",
     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80"
   },
   {
     quote: "Working with Ascope Tech was a game-changer. They built our AI-powered customer analytics portal from scratch, delivering a clean, highly scalable interface.",
-    author: "Elena Rostova",
-    role: "Founder & CEO",
-    company: "DataVibe AI",
+    author: "Divya Ramakrishnan",
     avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80"
+  },
+  {
+    quote: "Ascope Tech has been our go-to partner for all critical software upgrades. Their attention to detail and responsiveness is unmatched.",
+    author: "Srinivasan Ramanujam",
+    avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80"
+  },
+  {
+    quote: "Their expertise in custom database migration saved us weeks of downtime. Truly a remarkable engineering team.",
+    author: "Lakshmi Narayanan",
+    avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80"
+  },
+  {
+    quote: "From UI/UX mockups to full production deployment, the development flow was extremely smooth and professional.",
+    author: "Rajesh Kumar",
+    avatar: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=150&q=80"
+  },
+  {
+    quote: "The modern interface designs and optimization recommendations they provided exceeded all of our expectations.",
+    author: "Sandhya Hegde",
+    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80"
   }
 ];
 
@@ -140,9 +152,6 @@ export const TestimonialCarousel: React.FC = () => {
                 <h4 className="font-heading font-extrabold text-sm text-text_primary">
                   {TESTIMONIALS[activeIndex].author}
                 </h4>
-                <p className="text-xs text-text_muted">
-                  {TESTIMONIALS[activeIndex].role}, {TESTIMONIALS[activeIndex].company}
-                </p>
               </div>
             </div>
           </motion.div>
@@ -151,7 +160,7 @@ export const TestimonialCarousel: React.FC = () => {
 
       {/* Desktop View (Show 3 grid items) */}
       <div className="hidden md:grid grid-cols-3 gap-6">
-        {TESTIMONIALS.slice(0, 3).map((item, idx) => (
+        {[...TESTIMONIALS, ...TESTIMONIALS].slice(activeIndex, activeIndex + 3).map((item, idx) => (
           <div
             key={idx}
             className="bg-card_bg border border-border_custom p-8 rounded-lg shadow-card_default hover:shadow-card_hover transition-all duration-300 text-left flex flex-col justify-between"
@@ -173,17 +182,14 @@ export const TestimonialCarousel: React.FC = () => {
                 <h4 className="font-heading font-extrabold text-sm text-text_primary">
                   {item.author}
                 </h4>
-                <p className="text-xs text-text_muted">
-                  {item.role}, {item.company}
-                </p>
               </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Navigation Indicators & Buttons for Mobile */}
-      <div className="flex items-center justify-center space-x-6 mt-6 md:hidden">
+      {/* Navigation Indicators & Buttons */}
+      <div className="flex items-center justify-center space-x-6 mt-6">
         <button
           onClick={handlePrev}
           className="w-10 h-10 rounded-full bg-surface hover:bg-neutral-800 transition-colors flex items-center justify-center text-text_primary cursor-pointer min-h-[44px] min-w-[44px]"
