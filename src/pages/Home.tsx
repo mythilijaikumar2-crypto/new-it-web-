@@ -48,16 +48,16 @@ const SERVICES = [
 
 const CASE_STUDIES = [
   {
-    title: "FinTech Transaction Engine",
-    category: "FinTech / Scaling",
-    desc: "Designed and engineered an elite transaction router processing 10k TPS with sub-10ms latency.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80"
+    title: "Aliteapexcart",
+    category: "E-Commerce",
+    desc: "Engineered a high-performance, SEO-optimized headless e-commerce store with modern cart architecture and instant checkout.",
+    image: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=600&q=80"
   },
   {
-    title: "IoT Diagnostics Portal",
-    category: "IoT / Cloud Solutions",
-    desc: "Built a real-time tracking dashboard handling 50k concurrent connected edge devices.",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80"
+    title: "Heaven11 Holidays",
+    category: "Travel",
+    desc: "Developed a premium travel booking portal featuring dynamic packaging, interactive itineraries, and automated reservation syncing.",
+    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=600&q=80"
   }
 ];
 

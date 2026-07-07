@@ -4,51 +4,11 @@ import { ArrowRight, ExternalLink } from 'lucide-react';
 import { Button } from '../components/ui/Button';
 import { FadeInSection } from '../components/ui/FadeInSection';
 
-const CATEGORIES = ['All', 'FinTech', 'IoT', 'DevOps', 'AI', 'E-Commerce', 'Travel'];
+const CATEGORIES = ['All', 'E-Commerce', 'Travel', 'DevOps'];
 
 const STUDIES = [
   {
     id: 1,
-    title: "FinTech Transaction Engine",
-    category: "FinTech",
-    desc: "Designed and engineered an elite transaction router processing 10k TPS with sub-10ms latency.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
-    tags: ["Go", "Kafka", "AWS", "Redis"]
-  },
-  {
-    id: 2,
-    title: "IoT Diagnostics Portal",
-    category: "IoT",
-    desc: "Built a real-time tracking dashboard handling 50k concurrent connected edge devices.",
-    image: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80",
-    tags: ["React", "Node.js", "Kubernetes", "MQTT"]
-  },
-  {
-    id: 3,
-    title: "SaaS Multi-Tenant Pipeline",
-    category: "DevOps",
-    desc: "Automated a multi-tenant isolation builder, slashing pipeline provisioning time from hours to under 3 minutes.",
-    image: "https://images.unsplash.com/photo-1618401471353-b98aedd07871?auto=format&fit=crop&w=600&q=80",
-    tags: ["Terraform", "GitHub Actions", "Docker", "GCP"]
-  },
-  {
-    id: 4,
-    title: "Neural Document Parser",
-    category: "AI",
-    desc: "Integrated custom optical semantic layers to parse commercial credit applications automatically.",
-    image: "https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&fit=crop&w=600&q=80",
-    tags: ["Python", "PyTorch", "FastAPI", "Postgres"]
-  },
-  {
-    id: 5,
-    title: "High-Load Trading Terminal",
-    category: "FinTech",
-    desc: "Built responsive sub-second candlestick rendering and order placement grids for active market makers.",
-    image: "https://images.unsplash.com/photo-1642790106117-e829e14a795f?auto=format&fit=crop&w=600&q=80",
-    tags: ["TypeScript", "Next.js", "WebSockets", "Rust"]
-  },
-  {
-    id: 6,
     title: "Aliteapexcart",
     category: "E-Commerce",
     desc: "Engineered a high-performance, SEO-optimized headless e-commerce store with modern cart architecture and instant checkout.",
@@ -56,7 +16,7 @@ const STUDIES = [
     tags: ["React", "Next.js", "Tailwind CSS", "Stripe", "GraphQL"]
   },
   {
-    id: 7,
+    id: 2,
     title: "Inbind Technologies",
     category: "DevOps",
     desc: "Designed and implemented a secure B2B identity management portal and API gateway handling high-throughput service routing.",
@@ -64,7 +24,7 @@ const STUDIES = [
     tags: ["Node.js", "OAuth 2.0", "Docker", "Nginx", "Redis"]
   },
   {
-    id: 8,
+    id: 3,
     title: "Heaven11 Holidays",
     category: "Travel",
     desc: "Developed a premium travel booking portal featuring dynamic packaging, interactive itineraries, and automated reservation syncing.",
@@ -72,7 +32,7 @@ const STUDIES = [
     tags: ["React", "FastAPI", "PostgreSQL", "Maps API", "Stripe"]
   },
   {
-    id: 9,
+    id: 4,
     title: "Wonderwish Holidays",
     category: "Travel",
     desc: "Built a customized holiday planner and agent dashboard with real-time room availability checks and payment gateways.",
@@ -80,7 +40,7 @@ const STUDIES = [
     tags: ["Vue.js", "Node.js", "MongoDB", "Express", "S3"]
   },
   {
-    id: 10,
+    id: 5,
     title: "Jilla Clothing and Textile",
     category: "E-Commerce",
     desc: "Constructed an automated inventory sync and wholesale B2B ordering portal for a major textile manufacturer.",
@@ -165,7 +125,7 @@ export const Portfolio: React.FC = () => {
                   {STUDIES[0].title}
                 </h2>
                 <p className="text-sm md:text-base text-text_primary/95 leading-relaxed font-medium">
-                  We built a redundant Kafka transaction ledger in Go that processes live trades under strict compliance constraints. Verified throughput exceeded 10k transactions per second.
+                  {STUDIES[0].desc}
                 </p>
                 <div className="flex flex-wrap gap-2 pt-2">
                   {STUDIES[0].tags.map((tag, idx) => (
