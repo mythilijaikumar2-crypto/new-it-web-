@@ -33,7 +33,7 @@ const STUDIES = [
   },
   {
     id: 4,
-    title: "Wonderwish Holidays",
+    title: "Wanderwish Holidays",
     category: "Travel",
     desc: "Built a customized holiday planner and agent dashboard with real-time room availability checks and payment gateways.",
     image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?auto=format&fit=crop&w=600&q=80",
